@@ -20,7 +20,7 @@ frame1_sec = (0, (sound.duration*2) + 1.5)
 frame2_sec = (frame1_sec[-1], frame1_sec[-1] + (st_sound.duration*2) + 1.5)
 
 # background image
-bg_image = ImageClip(img = './bg_image.jpg', duration=frame2_sec[-1])
+bg_image = ImageClip(img = 'media/bg_image.jpg', duration=frame2_sec[-1])
 bg_image = bg_image.resize((576, 576))
 
 # 1st frame/scence
