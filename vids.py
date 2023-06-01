@@ -4,7 +4,7 @@ from moviepy.video.tools.subtitles import SubtitlesClip
 from moviepy.editor import AudioFileClip, ImageClip, CompositeVideoClip, concatenate_videoclips
 
 # read jp6kcore.csv
-vocab_idx = 8
+vocab_idx = 18
 vocabs = pd.read_csv('./jp6kcore.csv', encoding='utf-8-sig')
 vocab_detail = vocabs.iloc[vocab_idx]
 vocab = vocab_detail['kanji']
@@ -100,13 +100,15 @@ for pos_idx, (key, f) in enumerate(zip(frame2, fontsize_tup), start=2) :
         bg_color = 'black'
     else :
         text = text.replace(' ','').replace('<b>', ' ').replace('</b>', ' ').replace('。', '')
-        texts = text.split('、')
-        if len(texts) > 1 :
-            fontsize += (fontsize*.3)
-            if key == 'sentence_hira' :
-                y += (fontsize * 2) 
+        if len(text) > 36 :
+            texts = text.split('、')
+            if len(texts) > 1 :
+                fontsize += (fontsize*.3)
+                if key == 'sentence_hira' :
+                    y += (fontsize * 2) 
 
-        text = '\n'.join(texts)
+            text = '\n'.join(texts)
+        
         font = 'fonts/wqy-microhei.ttc'
         bg_color = 'transparent'
         

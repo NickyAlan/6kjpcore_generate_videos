@@ -36,25 +36,16 @@ def get_ypos(fontsize_dict: dict, top = 72) :
     return ypos
 
 def get_max_top(vocab_length: int) :
-    if vocab_length == 1 :
-        max_ = 120
-        top = 50
-    elif vocab_length ==2 :
-        max_ = 250
-        top = 60
-    elif vocab_length <= 4 :
-        max_ = 440
-        top = 72
-    elif vocab_length <= 7 :
-        max_ = 600
-        top = 90
-    elif vocab_length <= 14 :
-        max_ = 680
-        top = 120
-    else :
-        max_ = 750
-        top = 160
-    
+    convert = {1: (120, 50), 2: (250, 60), 3: (350, 72), 4: (440, 72), 5: (500, 73), 6: (550, 75), 7: (600, 120), 14: (680, 120)}
+    try :
+        max_, top = convert[vocab_length]
+    # if not exist in dict
+    except :
+        if vocab_length < 14 :
+            max_, top = convert[14]
+        else :
+            max_, top = (750, 160)
+
     return max_, top
 
 def get_max_st(sentence_length: int) :
