@@ -5,7 +5,7 @@ from moviepy.editor import AudioFileClip, ImageClip, CompositeVideoClip, concate
 
 if __name__ == '__main__' :
     # read jp6kcore.csv
-    start_vocab_idx = 49
+    start_vocab_idx = 59
     num_vocabs = 10
     vocabs = pd.read_csv('./jp6kcore.csv', encoding='utf-8-sig')
     print(f'\n   generating: {num_vocabs} vocabs\n   from: {start_vocab_idx} to {start_vocab_idx + num_vocabs - 1}')
@@ -81,8 +81,7 @@ if __name__ == '__main__' :
         fontsize_tup = ('m', 'm', 's')
         fontsize_dict2 = create_fontsize(sentence_length, st_translate_length, max_ = max_)
         ypos2 = get_ypos(fontsize_dict2, top = 144)
-        fontsize_dict2
-
+        
         for pos_idx, (key, f) in enumerate(zip(frame2, fontsize_tup), start=2) :
             text = vocab_detail[key]
             bg_color = 'transparent' 

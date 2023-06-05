@@ -1,4 +1,5 @@
 import urllib
+import subprocess
 from moviepy.editor import TextClip
 
 def create_generator(fontsize: float, font = 'wqy-microhei.ttc', color='white', bg_color = 'transparent') :
@@ -17,6 +18,8 @@ def create_fontsize(str_length1: int, str_length2: int, max_ = 330) :
     
     if str_length2 <= 3 :
         ssize = max_ / (str_length2 + 4)
+    elif str_length2 >= 34 :
+        ssize = max_ / (str_length2)
     elif str_length2 >= 21 :
         ssize = max_ / (str_length2 - 5)
     else :
@@ -46,7 +49,7 @@ def get_ypos(fontsize_dict: dict, top = 72) :
     return ypos
 
 def get_max_top(vocab_length: int) :
-    convert = {1: (120, 50), 2: (270, 60), 3: (390, 72), 4: (470, 72), 5: (500, 73), 6: (520, 75), 7: (600, 120), 9: (620, 120) ,14: (680, 120)}
+    convert = {1: (120, 50), 2: (270, 60), 3: (390, 72), 4: (440, 72), 5: (480, 73), 6: (520, 75), 7: (600, 120), 9: (620, 120) ,14: (680, 120)}
     try :
         max_, top = convert[vocab_length]
     # if not exist in dict
@@ -64,11 +67,15 @@ def get_max_st(sentence_length: int) :
     elif sentence_length <= 26 :
         max_ = 800
     elif sentence_length <= 41 :
-        max_ = 750
+        max_ = 720
     else :
-        max_ = 700
+        max_ = 690
 
     return max_
 
 def download_from_url(url: str, filepath: str) :
     urllib.request.urlretrieve(url, filepath)
+
+def copy2clip(text: str) :
+    cmd = f'echo {text}|clip'
+    return subprocess.check_call(cmd, shell=True)
