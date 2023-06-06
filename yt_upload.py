@@ -5,7 +5,7 @@ wfu_sec = 15
 n_videos = 10
 
 w, h = pyautogui.size()
-for idx_video in range(1, n_videos) :
+for idx_video in range(n_videos) :
     pyautogui.click(x=1748, y=122)
     sleep(0.5)
     pyautogui.click(x=1761, y=165)
