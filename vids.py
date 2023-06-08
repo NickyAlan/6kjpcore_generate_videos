@@ -1,11 +1,12 @@
 from utils import *
 import pandas as pd
+from random import randint
 from moviepy.video.tools.subtitles import SubtitlesClip
 from moviepy.editor import AudioFileClip, ImageClip, CompositeVideoClip, concatenate_videoclips
 
 if __name__ == '__main__' :
     # read jp6kcore.csv
-    start_vocab_idx = 79
+    start_vocab_idx = 89
     num_vocabs = 10
     vocabs = pd.read_csv('./jp6kcore.csv', encoding='utf-8-sig')
     print(f'\n   generating: {num_vocabs} vocabs\n   from: {start_vocab_idx} to {start_vocab_idx + num_vocabs - 1}')
@@ -17,6 +18,7 @@ if __name__ == '__main__' :
 
         # download sounds
         print(f'\n\t[{vocab_idx}] vocab: {vocab_detail["romaji"]}')
+        print(f'\t: {vocab_detail["translate"]}')
         download_from_url(vocab_detail['sound_url'], 'sounds/sound.mp3')
         download_from_url(vocab_detail['sentence_sound_url'], 'sounds/sentence_sound.mp3')
         
@@ -27,8 +29,13 @@ if __name__ == '__main__' :
         frame2_sec = (frame1_sec[-1], frame1_sec[-1] + (st_sound.duration*2) + 1.5)
         
         # background image
-        bg_image = ImageClip(img = 'media/bg_image.jpg', duration=frame2_sec[-1])
+        bg_images = ['media/bg_red.jpg', 'media/bg_yellow.jpg']
+        bg_random = bg_images[randint(0, len(bg_images) - 1)]
+        bg_image = ImageClip(img = bg_random, duration=frame2_sec[-1])
         bg_image = bg_image.resize((576, 576))
+        color_dict = {'media/bg_red.jpg': ['#36332d', 'white', '#36332d'], \
+                      'media/bg_yellow.jpg': ['#36332d', 'white', '#36332d']}
+        color_c = color_dict[bg_random]
 
         # 1st frame/scence
         frame1 = ['kanji', 'hira', 'romaji', 'translate']
@@ -44,7 +51,7 @@ if __name__ == '__main__' :
         for pos_idx, (key, f) in enumerate(zip(frame1, fontsize_tup), start=1) :
             text = vocab_detail[key]
             bg_color = 'transparent'
-            color = 'yellow' if key == 'kanji' else 'white'
+            color = color_c[0] if key == 'kanji' else color_c[1]
             fontsize = fontsize_dict1[f]
             y = ypos1[f'{pos_idx}']
             
@@ -60,7 +67,7 @@ if __name__ == '__main__' :
                         text = ' '.join(texts[:n//2]) + '\n' + ' '.join(texts[n//2: ])
 
                 font = 'fonts/Cubano.ttf'
-                bg_color = 'black'
+                bg_color = color_c[2]
             else : 
                 font = 'fonts/wqy-microhei.ttc'
                 bg_color = 'transparent'
@@ -85,7 +92,7 @@ if __name__ == '__main__' :
         for pos_idx, (key, f) in enumerate(zip(frame2, fontsize_tup), start=2) :
             text = vocab_detail[key]
             bg_color = 'transparent' 
-            color = 'yellow' if key == 'sentence' else 'white'
+            color = color_c[0] if key == 'sentence' else color_c[1]
             fontsize = fontsize_dict2[f]
             y = ypos2[f'{pos_idx}']
 
@@ -103,7 +110,7 @@ if __name__ == '__main__' :
                         text = ' '.join(texts[:n//2]) + '\n' + ' '.join(texts[n//2: ])
 
                 font = 'fonts/Cubano.ttf'
-                bg_color = 'black'
+                bg_color = color_c[2]
             else :
                 text = text.replace(' ','').replace('<b>', ' ').replace('</b>', ' ').replace('。', '')
                 if len(text) > 36 :
@@ -131,7 +138,9 @@ if __name__ == '__main__' :
         seconds2 = frame2_sec
 
         seperate_sec1 = [(0, audio1_sec), (audio1_sec, audio1_sec+1), (audio1_sec+1, seconds1[-1])]
-        seperate_sec2 = [(seconds2[0], seconds2[0] + audio2_sec), (seconds2[0] + audio2_sec, seconds2[0] + audio2_sec + 1), (seconds2[0] + audio2_sec + 1, seconds2[-1])]
+        seperate_sec2 = [(seconds2[0], seconds2[0] + audio2_sec),\
+                         (seconds2[0] + audio2_sec, seconds2[0] + audio2_sec + 1), \
+                         (seconds2[0] + audio2_sec + 1, seconds2[-1])]
         seperate_sec = seperate_sec1 + seperate_sec2 
 
         clips = []
