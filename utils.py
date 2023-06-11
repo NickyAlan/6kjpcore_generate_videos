@@ -16,7 +16,7 @@ def create_fontsize(str_length1: int, str_length2: int, max_ = 330) :
     lsize = max_ / str_length1
     msize = max_ / (str_length1 + 3)
     
-    if str_length2 <= 4 :
+    if str_length2 <= 5 :
         ssize = max_ / (str_length2 + 4)
     elif str_length2 >= 34 :
         ssize = max_ / (str_length2)

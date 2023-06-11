@@ -6,7 +6,7 @@ from moviepy.editor import AudioFileClip, ImageClip, CompositeVideoClip, concate
 
 if __name__ == '__main__' :
     # read jp6kcore.csv
-    start_vocab_idx = 109
+    start_vocab_idx = 119
     num_vocabs = 10
     vocabs = pd.read_csv('./jp6kcore.csv', encoding='utf-8-sig')
     print(f'\n   generating: {num_vocabs} vocabs\n   from: {start_vocab_idx} to {start_vocab_idx + num_vocabs - 1}')
@@ -29,12 +29,13 @@ if __name__ == '__main__' :
         frame2_sec = (frame1_sec[-1], frame1_sec[-1] + (st_sound.duration*2) + 1.5)
         
         # background image
-        bg_images = ['media/bg_red.jpg', 'media/bg_yellow.jpg']
+        bg_images = ['media/bg_v1.jpg', 'media/bg_v2.jpg', 'media/bg_v3.jpg']
         bg_random = bg_images[randint(0, len(bg_images) - 1)]
         bg_image = ImageClip(img = bg_random, duration=frame2_sec[-1])
         bg_image = bg_image.resize((576, 576))
-        color_dict = {'media/bg_red.jpg': ['#36332d', 'white', '#36332d'], \
-                      'media/bg_yellow.jpg': ['#36332d', 'white', '#36332d']}
+        color_dict = {'media/bg_v1.jpg': ['yellow', 'white', '#36332d'], 
+                      'media/bg_v2.jpg': ['yellow', 'white', '#36332d'],
+                      'media/bg_v3.jpg': ['purple', 'white', '#36332d']}
         color_c = color_dict[bg_random]
 
         # 1st frame/scence
@@ -155,5 +156,6 @@ if __name__ == '__main__' :
 
         # render complete video
         result = concatenate_videoclips(clips)
-        result.write_videofile(f'videos/{vocab}.mp4', fps=24, verbose=False, logger=None)
+        save_name = f'videos/{vocab} - {vocab_detail["romaji"]} - {vocab_detail["translate"]}.mp4'
+        result.write_videofile(save_name, fps=24, verbose=False, logger=None)
         print(f'\tsaved: {vocab_detail["romaji"]}')
