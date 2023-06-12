@@ -6,7 +6,7 @@ from moviepy.editor import AudioFileClip, ImageClip, CompositeVideoClip, concate
 
 if __name__ == '__main__' :
     # read jp6kcore.csv
-    start_vocab_idx = 119
+    start_vocab_idx = 129
     num_vocabs = 10
     vocabs = pd.read_csv('./jp6kcore.csv', encoding='utf-8-sig')
     print(f'\n   generating: {num_vocabs} vocabs\n   from: {start_vocab_idx} to {start_vocab_idx + num_vocabs - 1}')
@@ -31,11 +31,12 @@ if __name__ == '__main__' :
         # background image
         bg_images = ['media/bg_v1.jpg', 'media/bg_v2.jpg', 'media/bg_v3.jpg']
         bg_random = bg_images[randint(0, len(bg_images) - 1)]
+        # bg_random = bg_images[2]
         bg_image = ImageClip(img = bg_random, duration=frame2_sec[-1])
         bg_image = bg_image.resize((576, 576))
         color_dict = {'media/bg_v1.jpg': ['yellow', 'white', '#36332d'], 
                       'media/bg_v2.jpg': ['yellow', 'white', '#36332d'],
-                      'media/bg_v3.jpg': ['purple', 'white', '#36332d']}
+                      'media/bg_v3.jpg': ['purple', 'white', '#36332d'],}
         color_c = color_dict[bg_random]
 
         # 1st frame/scence
