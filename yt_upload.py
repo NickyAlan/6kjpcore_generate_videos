@@ -19,7 +19,7 @@ for idx_video in range(n_videos) :
     for next in range(4) : 
         pyautogui.click(x=1512, y=933)
         sleep(1)
-    sleep(wfu_sec//3)
+    sleep(wfu_sec//5)
     pyautogui.click(x=1216, y=809)
     # pyautogui.click(x=1211, y=712)
-    sleep(wfu_sec//3)
+    sleep(wfu_sec//5)
