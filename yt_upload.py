@@ -1,7 +1,7 @@
 import pyautogui
 from time import sleep
 
-wfu_sec = 30
+wfu_sec = 35
 n_videos = 10
 
 w, h = pyautogui.size()
@@ -19,7 +19,7 @@ for idx_video in range(n_videos) :
     for next in range(4) : 
         pyautogui.click(x=1512, y=933)
         sleep(1)
-    sleep(wfu_sec//5)
+    sleep(wfu_sec//4)
     pyautogui.click(x=1216, y=809)
     # pyautogui.click(x=1211, y=712)
-    sleep(wfu_sec//5)
+    sleep(wfu_sec//4)
