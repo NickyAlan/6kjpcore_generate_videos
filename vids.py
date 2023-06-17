@@ -6,7 +6,7 @@ from moviepy.editor import AudioFileClip, ImageClip, CompositeVideoClip, concate
 
 if __name__ == '__main__' :
     # read jp6kcore.csv
-    start_vocab_idx = 159
+    start_vocab_idx = 169
     num_vocabs = 10
     vocabs = pd.read_csv('./jp6kcore.csv', encoding='utf-8-sig')
     print(f'\n   generating: {num_vocabs} vocabs\n   from: {start_vocab_idx} to {start_vocab_idx + num_vocabs - 1}')
