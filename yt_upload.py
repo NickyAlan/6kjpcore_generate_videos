@@ -1,7 +1,7 @@
 import pyautogui
 from time import sleep
 
-wfu_sec = 35
+wfu_sec = 37
 n_videos = 10
 
 w, h = pyautogui.size()
