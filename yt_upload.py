@@ -15,6 +15,7 @@ for idx_video in range(n_videos) :
     pyautogui.click(x=331, y=215)
     for right in range(idx_video): pyautogui.press('right')
     pyautogui.press('enter')
+    
     sleep(wfu_sec)
     for next in range(4) : 
         pyautogui.click(x=1512, y=933)
