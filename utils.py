@@ -31,8 +31,8 @@ def create_fontsize(str_length1: int, str_length2: int, max_ = 330) :
         fonsize_dict['m'] = max_ / (str_length1 + 1)
         fonsize_dict['s'] = ( max_ * 4 ) / str_length2
     elif str_length1 == 2 :
-        fonsize_dict['m'] = max_ / (str_length1 + 2)
-        if str_length2 <= 4 :
+        fonsize_dict['m'] = max_ / (str_length1 + 3)
+        if str_length2 <= 6 :
             fonsize_dict['s'] = ( max_ * 2 ) / (str_length2 + 4)
         else :
             fonsize_dict['s'] = ( max_ * 2 ) / str_length2
