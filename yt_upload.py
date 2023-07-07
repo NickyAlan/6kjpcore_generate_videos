@@ -3,7 +3,7 @@ from time import sleep
 from utils import copy2clip
 # https://www.youtube.com/@6kjpcore/featured
 
-wfu_sec = 37
+wfu_sec = 39
 n_videos = 10
 
 copy2clip("Desktop\\all-folders\\6kjpcore\\videos")
@@ -12,11 +12,11 @@ w, h = pyautogui.size()
 for idx_video in range(n_videos) :
     if idx_video == 0 :
         pyautogui.click(x=1718, y=111)
-        sleep(.5)
+        sleep(.2)
         pyautogui.click(x=1778, y=166)
-        sleep(2)
+        sleep(5)
         pyautogui.click(x=934, y=691)
-        sleep(1)
+        sleep(3)
         pyautogui.doubleClick(x=492, y=60)
         sleep(.1)
         pyautogui.hotkey('ctrl', 'a')

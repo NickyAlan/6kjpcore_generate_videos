@@ -5,8 +5,10 @@ from moviepy.video.tools.subtitles import SubtitlesClip
 from moviepy.editor import AudioFileClip, ImageClip, CompositeVideoClip, concatenate_videoclips
 
 if __name__ == '__main__' :
-    # read jp6kcore.csv
-    start_vocab_idx = 340
+    # read and update: start_vocab_idx.txt
+    with open('start_vocab_idx.txt', 'r') as f :
+        start_vocab_idx = int(f.readline())
+
     num_vocabs = 10
     vocabs = pd.read_csv('./jp6kcore.csv', encoding='utf-8-sig')
     print(f'\n   generating: {num_vocabs} vocabs\n   from: {start_vocab_idx} to {start_vocab_idx + num_vocabs - 1}')
@@ -161,3 +163,10 @@ if __name__ == '__main__' :
         save_name = f'videos/{vocab} - {vocab_detail["romaji"]} - {vocab_detail["translate"]}.mp4'
         result.write_videofile(save_name, fps=24, verbose=False, logger=None)
         print(f'\tsaved: {vocab_detail["romaji"]}')
+
+
+with open('start_vocab_idx.txt', 'w') as f :
+    f.write(str(start_vocab_idx + num_vocabs))
+
+print(f'\n[INFO] UPDATED start_vocab_idx.txt from {start_vocab_idx} to {start_vocab_idx + num_vocabs}')
+ 
