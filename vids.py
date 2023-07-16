@@ -165,8 +165,8 @@ if __name__ == '__main__' :
         print(f'\tsaved: {vocab_detail["romaji"]}')
 
 
-with open('start_vocab_idx.txt', 'w') as f :
-    f.write(str(start_vocab_idx + num_vocabs))
+    with open('start_vocab_idx.txt', 'w') as f :
+        f.write(str(start_vocab_idx + num_vocabs))
 
-print(f'\n[INFO] UPDATED start_vocab_idx.txt from {start_vocab_idx} to {start_vocab_idx + num_vocabs}')
+    print(f'\n[INFO] UPDATED start_vocab_idx.txt from {start_vocab_idx} to {start_vocab_idx + num_vocabs}')
  

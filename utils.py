@@ -11,7 +11,7 @@ def create_generator(fontsize: float, font = 'wqy-microhei.ttc', color='white', 
 
 def create_fontsize(str_length1: int, str_length2: int, max_ = 330) :
     '''
-    create appropriate fontsie
+    create appropriate fontsize
     '''
     lsize = max_ / str_length1
     msize = max_ / (str_length1 + 3)
@@ -52,7 +52,8 @@ def get_ypos(fontsize_dict: dict, top = 72) :
     return ypos
 
 def get_max_top(vocab_length: int) :
-    convert = {1: (120, 50), 2: (270, 60), 3: (390, 72), 4: (440, 72), 5: (480, 73), 6: (520, 75), 7: (600, 120), 8: (600, 120), 9: (620, 120) ,14: (680, 120)}
+    convert = {1: (120, 50), 2: (270, 60), 3: (390, 72), 4: (440, 72), 5: (480, 73), 
+               6: (520, 75), 7: (600, 120), 8: (600, 120), 9: (620, 120) ,14: (680, 120)}
     try :
         max_, top = convert[vocab_length]
     # if not exist in dict
