@@ -4,7 +4,7 @@ from time import sleep
 from utils import copy2clip
 # https://www.youtube.com/@6kjpcore/featured
 
-wfu_sec = 6
+wfu_sec = 8
 n_videos = 10
 
 copy2clip("Desktop\\all-folders\\6kjpcore\\videos")
@@ -21,7 +21,7 @@ for idx_video in range(n_videos) :
         pyautogui.click(x=934, y=691)
         sleep(3)
         pyautogui.doubleClick(x=562, y=60)
-        sleep(.1)
+        sleep(1)
         pyautogui.hotkey('ctrl', 'a')
         pyautogui.hotkey('ctrl', 'v')
         pyautogui.hotkey('enter')
@@ -43,7 +43,8 @@ for idx_video in range(n_videos) :
         pyautogui.click(x=1512, y=933)
         sleep(1)
     sleep(wfu_sec//4)
-    # pyautogui.click(x=1216, y=809)
+    pyautogui.click(x=1216, y=809)
+    sleep(wfu_sec//4)
     pyautogui.click(x=1211, y=712)
     sleep(wfu_sec//4)
 
