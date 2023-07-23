@@ -1,26 +1,27 @@
+import os
 import pyautogui
 import webbrowser
 from time import sleep
 from utils import copy2clip
 # https://www.youtube.com/@6kjpcore/featured
 
-wfu_sec = 8
-n_videos = 10
+wfu_sec =5
+n_videos = len(os.listdir('videos'))
 
 copy2clip("Desktop\\all-folders\\6kjpcore\\videos")
 w, h = pyautogui.size()
 webbrowser.open('https://www.youtube.com/@6kjpcore/featured', 1)
-sleep(5)
+sleep(7)
 
 for idx_video in range(n_videos) :
     if idx_video == 0 :
         pyautogui.click(x=1718, y=111)
         sleep(.2)
         pyautogui.click(x=1778, y=166)
-        sleep(5)
+        sleep(6)
         pyautogui.click(x=934, y=691)
-        sleep(3)
-        pyautogui.doubleClick(x=562, y=60)
+        sleep(4)
+        pyautogui.doubleClick(x=592, y=60)
         sleep(1)
         pyautogui.hotkey('ctrl', 'a')
         pyautogui.hotkey('ctrl', 'v')
@@ -40,12 +41,14 @@ for idx_video in range(n_videos) :
     
     sleep(wfu_sec)
     for next in range(7) : 
-        pyautogui.click(x=1512, y=933)
+        pyautogui.click(x=1470, y=933)
         sleep(1)
     sleep(wfu_sec//4)
     pyautogui.click(x=1216, y=809)
     sleep(wfu_sec//4)
     pyautogui.click(x=1211, y=712)
+    sleep(wfu_sec//6)
+    pyautogui.click(x=1211, y=732)
     sleep(wfu_sec//4)
 
 pyautogui.moveTo(x=100, y=100)
