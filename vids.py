@@ -31,14 +31,18 @@ if __name__ == '__main__' :
             frame2_sec = (frame1_sec[-1], frame1_sec[-1] + (st_sound.duration*2) + 1.5)
             
             # background image
-            bg_images = ['media/bg_v1.jpg', 'media/bg_v2.jpg', 'media/bg_v3.jpg']
+            bg_images = ['media/bg_v0.jpg', 'media/bg_v1.jpg', 'media/bg_v2.jpg', 'media/bg_v3.jpg', 'media/bg_v4.jpg']
             bg_random = bg_images[randint(0, len(bg_images) - 1)]
-            # bg_random = bg_images[2]
+            # bg_random = bg_images[4]
             bg_image = ImageClip(img = bg_random, duration=frame2_sec[-1])
             bg_image = bg_image.resize((576, 576))
-            color_dict = {'media/bg_v1.jpg': ['yellow', 'white', '#36332d'], 
-                        'media/bg_v2.jpg': ['yellow', 'white', '#36332d'],
-                        'media/bg_v3.jpg': ['purple', 'white', '#36332d'],}
+            color_dict = {
+                            'media/bg_v0.jpg': ['yellow', 'white', 'black'],
+                            'media/bg_v1.jpg': ['yellow', 'white', '#36332d'], 
+                            'media/bg_v2.jpg': ['yellow', 'white', '#36332d'],
+                            'media/bg_v3.jpg': ['purple', 'white', '#36332d'],
+                            'media/bg_v4.jpg': ['black', 'white', '#36332d'],
+                         }
             color_c = color_dict[bg_random]
 
             # 1st frame/scence
