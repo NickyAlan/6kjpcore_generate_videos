@@ -3,9 +3,13 @@ import pandas as pd
 from random import randint
 from moviepy.video.tools.subtitles import SubtitlesClip
 from moviepy.editor import AudioFileClip, ImageClip, CompositeVideoClip, concatenate_videoclips
+import moviepy
 
 if __name__ == '__main__' :
     # read and update: start_vocab_idx.txt
+
+    print(pd.__version__)
+    print(moviepy.__version__)
     with open('start_vocab_idx.txt', 'r') as f :
         start_vocab_idx = int(f.readline())
 
