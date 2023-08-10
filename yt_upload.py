@@ -22,7 +22,7 @@ for idx_video in range(n_videos) :
         pyautogui.click(x=934, y=691)
         sleep(4)
         pyautogui.doubleClick(x=592, y=60)
-        sleep(1)
+        sleep(4)
         pyautogui.hotkey('ctrl', 'a')
         pyautogui.hotkey('ctrl', 'v')
         pyautogui.hotkey('enter')
@@ -40,7 +40,7 @@ for idx_video in range(n_videos) :
     pyautogui.press('enter')
     
     sleep(wfu_sec)
-    for next in range(7) : 
+    for next in range(9) : 
         pyautogui.click(x=1470, y=933)
         sleep(1)
     sleep(wfu_sec//4)
