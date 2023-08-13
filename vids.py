@@ -1,15 +1,17 @@
+import os
 from utils import *
 import pandas as pd
 from random import randint
 from moviepy.video.tools.subtitles import SubtitlesClip
 from moviepy.editor import AudioFileClip, ImageClip, CompositeVideoClip, concatenate_videoclips
-import moviepy
 
 if __name__ == '__main__' :
-    # read and update: start_vocab_idx.txt
+    # remove file if forget to remove previous day
+    DIR = './videos'
+    file_paths = [os.path.join(DIR, file_name) for file_name in os.listdir(DIR)]
+    for path in file_paths : os.remove(path)
 
-    print(pd.__version__)
-    print(moviepy.__version__)
+    # read and update: start_vocab_idx.txt
     with open('start_vocab_idx.txt', 'r') as f :
         start_vocab_idx = int(f.readline())
 
