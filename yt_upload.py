@@ -21,8 +21,9 @@ for idx_video in range(n_videos) :
         sleep(6)
         pyautogui.click(x=934, y=691)
         sleep(4)
-        pyautogui.doubleClick(x=592, y=60)
-        sleep(4)
+        # pyautogui.doubleClick(x=592, y=60)
+        pyautogui.doubleClick(x=1006, y=396) # brave update
+        sleep(2)
         pyautogui.hotkey('ctrl', 'a')
         pyautogui.hotkey('ctrl', 'v')
         pyautogui.hotkey('enter')
@@ -35,7 +36,8 @@ for idx_video in range(n_videos) :
         pyautogui.click(x=906, y=505)
         sleep(0.5)
         
-    pyautogui.click(x=331, y=215)
+    # pyautogui.click(x=331, y=215)
+    pyautogui.click(x=710, y=563) # brave update
     for right in range(idx_video): pyautogui.press('right')
     pyautogui.press('enter')
     
