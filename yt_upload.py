@@ -15,29 +15,30 @@ sleep(7)
 
 for idx_video in range(n_videos) :
     if idx_video == 0 :
-        pyautogui.click(x=1718, y=111)
-        sleep(.2)
-        pyautogui.click(x=1778, y=166)
+        pyautogui.click(x=1736, y=155)
+        sleep(.4)
+        pyautogui.click(x=1798, y=204)
         sleep(6)
         pyautogui.click(x=934, y=691)
         sleep(4)
         # pyautogui.doubleClick(x=592, y=60)
-        pyautogui.doubleClick(x=1006, y=396) # brave update
+        pyautogui.doubleClick(x=624, y=64) # brave update
         sleep(2)
         pyautogui.hotkey('ctrl', 'a')
+        sleep(1)
         pyautogui.hotkey('ctrl', 'v')
         pyautogui.hotkey('enter')
         sleep(2)
     else :
-        pyautogui.click(x=1748, y=122)
+        pyautogui.click(x=1759, y=162)
         sleep(0.5)
-        pyautogui.click(x=1761, y=165)
+        pyautogui.click(x=1703, y=213)
         sleep(0.5)
         pyautogui.click(x=906, y=505)
         sleep(0.5)
         
     # pyautogui.click(x=331, y=215)
-    pyautogui.click(x=710, y=563) # brave update
+    pyautogui.click(x=359, y=221) # brave update
     for right in range(idx_video): pyautogui.press('right')
     pyautogui.press('enter')
     
