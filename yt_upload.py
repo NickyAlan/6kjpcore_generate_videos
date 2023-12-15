@@ -10,7 +10,7 @@ n_videos = len(os.listdir('videos'))
 
 copy2clip("Desktop\\all-folders\\6kjpcore\\videos")
 w, h = pyautogui.size()
-webbrowser.open('https://www.youtube.com/@6kjpcore/featured', 1)
+webbrowser.open('https://www.youtube.com/channel/UCpsUzo10lMGTYr9SU1TAiow', 1)
 sleep(7)
 
 for idx_video in range(n_videos) :

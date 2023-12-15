@@ -40,37 +40,49 @@ def get_srtfile(save_path: str, keeps_sec_subtitle: list) :
             caption = f'{order}\n{start_stamp} --> {stop_stamp}\n{text}\n\n'
             file.write(caption)
 
+def get_vocabtxt(save_path: str, keeps_vocabs: list) :
+    '''
+    save to .txt file
+    '''
+    if not save_path.endswith('.txt'): save_path += '.txt'
+    with open(f'{save_path}', 'w', encoding='utf-8') as file :
+        for vocab, hiragana, romaji, translate in keeps_vocabs : 
+            file.write(f'{vocab} ({hiragana} - {romaji}) : {translate}\n')
+
 if __name__ == "__main__" :
-    VIDEO_PATH = "videos/asmr1"
-    NUM_VOCABS = 3
+    VIDEO_PATH = "videos/trainstation"
+    NUM_VOCABS = 100
+    START_VOCAB = 200
     W, H = 1280, 720
+    CHENGE_BG_EVERY = 20
     SMOOTH_TIME = 0.2
     opacity_time = 0.1
     END_OPACITY_TIME = 1.2
     INTERVAL_TIME = 3
     start2speech = 0 # for initial text 2 speech capcut
-    BG_IMAGES = ["media/asmr1.jpg", "media/bgasmr1.jpg"]
-    CHENGE_BG_EVERY = 2
+    BG_IMAGES = ["media/a4.jpg", "media/a2.jpg", "media/a1.jpg", "media/a3.jpg", "media/a5.jpg"]
     clips = [] 
+    keeps_vocabs = [] # for get txt file
     keeps_sec_subtitle = [] # for text to speech in capcut
 
     assert len(BG_IMAGES) > (NUM_VOCABS-1)//CHENGE_BG_EVERY, f"total background images must >= {NUM_VOCABS//CHENGE_BG_EVERY}"
     vocabs = pd.read_csv('./jp6kcore.csv', encoding='utf-8-sig')
     hour, minute = datetime.datetime.now().strftime("%H:%M").split(":")
     print(f"\nCreating : {NUM_VOCABS} vocabs ~ {hour}:{int(minute)+math.ceil((36*NUM_VOCABS)/60)}")
-    for vocab_idx in range(NUM_VOCABS) :
+    for vocab_idx in range(START_VOCAB, NUM_VOCABS + START_VOCAB) :
         detail = vocabs.iloc[vocab_idx]
         vocab = detail["kanji"]
         hiragana = detail["hira"]
         romaji = detail["romaji"]
-        translate = detail["translate"]
+        translate = detail["translate"].replace("(colloquial)", "").strip()
         sound = detail["sound_url"]
+        keeps_vocabs.append((vocab, hiragana, romaji, translate))
         print(f"[{vocab_idx+1}] : {hiragana} - {translate}")
 
         download_from_url(sound, f"sounds/{romaji}.mp3")
         sound = AudioFileClip(f"sounds/{romaji}.mp3")
 
-        BG_IMAGE = BG_IMAGES[vocab_idx//CHENGE_BG_EVERY] # change bg every x vocabs
+        BG_IMAGE = BG_IMAGES[(vocab_idx-START_VOCAB)//CHENGE_BG_EVERY] # change bg every x vocabs
         ENG_TIME = round(sound.duration, 3) + 1
         VOCAB_TIME = round(sound.duration, 3)
         
@@ -132,8 +144,9 @@ if __name__ == "__main__" :
     # concatenation
     print("[INFO] : Concatenating ...")
     result = concatenate_videoclips(clips)
-    result.write_videofile(f"{VIDEO_PATH}.mp4", fps=24, verbose=False, logger=None)
+    result.write_videofile(f"{VIDEO_PATH}.mp4", fps=14, verbose=False, logger=None)
     get_srtfile(f"{VIDEO_PATH}.srt", keeps_sec_subtitle)
+    get_vocabtxt(f"{VIDEO_PATH}.txt", keeps_vocabs)
 
     # remove temp audio files
     files_path = [os.path.join("sounds", name) for name in os.listdir("sounds")]

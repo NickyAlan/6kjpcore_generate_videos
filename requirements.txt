@@ -1,3 +1,4 @@
 pandas==2.0.3
 moviepy==1.0.3
 pyautogui
+Pillow==9.5.0
